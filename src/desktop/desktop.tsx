@@ -1,7 +1,5 @@
-import { Folder } from './folder/folder';
+import { Container } from "./folder/container";
 
 export const Desktop = () => {
-    return (
-        <Folder />
-    );
-}
+  return <Container />;
+};

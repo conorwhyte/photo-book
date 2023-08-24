@@ -1,12 +1,13 @@
-import React from 'react';
-import logo from './logo.svg';
-// import './App.css';
-import { Desktop } from './desktop/desktop';
+import { Desktop } from "./desktop/desktop";
+import { DndProvider } from "react-dnd";
+import { HTML5Backend } from "react-dnd-html5-backend";
 
 function App() {
   return (
     <div className="App">
-      <Desktop />
+      <DndProvider backend={HTML5Backend}>
+        <Desktop />
+      </DndProvider>
     </div>
   );
 }

@@ -1,5 +1,8 @@
+import React from "react";
 import { makeStyles, shorthands } from "@griffel/react";
 import FolderIcon from "./folder.svg";
+import { ItemTypes } from "./container";
+import { useDrag } from "react-dnd";
 
 const useClasses = makeStyles({
   container: {
@@ -19,13 +22,37 @@ const useClasses = makeStyles({
   },
 });
 
-export const Folder = () => {
+const style: React.CSSProperties = {
+  position: "absolute",
+  cursor: "move",
+};
+
+export interface BoxProps {
+  id: string;
+  left: number;
+  top: number;
+}
+
+export const Folder: React.FC<BoxProps> = ({ id, left, top }) => {
   const classes = useClasses();
 
+  const [_, drag] = useDrag(
+    () => ({
+      type: ItemTypes.BOX,
+      item: { id, left, top },
+      collect: (monitor) => ({
+        isDragging: monitor.isDragging(),
+      }),
+    }),
+    [id, left, top],
+  );
+
   return (
-    <div className={classes.container}>
-      <img src={FolderIcon} alt="folder" />
-      <span> Folder </span>
+    <div ref={drag} style={{ ...style, left, top }}>
+      <div className={classes.container}>
+        <img src={FolderIcon} alt="folder" />
+        <span> Folder </span>
+      </div>
     </div>
   );
 };
