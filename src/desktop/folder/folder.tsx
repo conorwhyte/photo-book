@@ -1,14 +1,26 @@
 import React from "react";
 import { makeStyles, shorthands } from "@griffel/react";
 import FolderIcon from "./folder.svg";
-import { ItemTypes } from "./container";
 import { useDrag } from "react-dnd";
 
+export type DraggableBox = {
+  left: number;
+  top: number;
+};
+
+export interface FolderProps extends DraggableBox {
+  id: string;
+}
+
 const useClasses = makeStyles({
+  selected: {
+    backgroundColor: "#e6f5ff",
+  },
   container: {
     height: "117px",
     width: "96px",
     display: "flex",
+    position: "absolute",
     cursor: "pointer",
     color: "#535b62",
     marginBottom: "22px",
@@ -22,23 +34,12 @@ const useClasses = makeStyles({
   },
 });
 
-const style: React.CSSProperties = {
-  position: "absolute",
-  cursor: "move",
-};
-
-export interface BoxProps {
-  id: string;
-  left: number;
-  top: number;
-}
-
-export const Folder: React.FC<BoxProps> = ({ id, left, top }) => {
+export const Folder: React.FC<FolderProps> = ({ id, left, top }) => {
   const classes = useClasses();
 
-  const [_, drag] = useDrag(
+  const [{ isDragging }, drag] = useDrag(
     () => ({
-      type: ItemTypes.BOX,
+      type: "box",
       item: { id, left, top },
       collect: (monitor) => ({
         isDragging: monitor.isDragging(),
@@ -47,12 +48,14 @@ export const Folder: React.FC<BoxProps> = ({ id, left, top }) => {
     [id, left, top],
   );
 
+  if (isDragging) {
+    return <div ref={drag} />;
+  }
+
   return (
-    <div ref={drag} style={{ ...style, left, top }}>
-      <div className={classes.container}>
-        <img src={FolderIcon} alt="folder" />
-        <span> Folder </span>
-      </div>
+    <div ref={drag} className={classes.container} style={{ top, left }}>
+      <img src={FolderIcon} alt="folder" />
+      <span> Folder </span>
     </div>
   );
 };
