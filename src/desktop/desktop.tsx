@@ -23,8 +23,8 @@ export const Desktop: FC = () => {
   const [boxes, setBoxes] = useState<{
     [key: string]: DraggableBox;
   }>({
-    firstFolder: { top: 50, left: 50 },
-    secondFolder: { top: 50, left: 170 },
+    firstFolder: { top: 60, left: 50 },
+    secondFolder: { top: 60, left: 180 },
   });
 
   const moveBox = useCallback(

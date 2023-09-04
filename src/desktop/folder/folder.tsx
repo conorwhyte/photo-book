@@ -2,6 +2,7 @@ import React from "react";
 import { makeStyles, shorthands } from "@griffel/react";
 import FolderIcon from "./folder.svg";
 import { useDrag } from "react-dnd";
+import Container from "./container";
 
 export type DraggableBox = {
   left: number;
@@ -35,6 +36,7 @@ const useClasses = makeStyles({
 });
 
 export const Folder: React.FC<FolderProps> = ({ id, left, top }) => {
+  const isSelected = true;
   const classes = useClasses();
 
   const [{ isDragging }, drag] = useDrag(
@@ -53,9 +55,15 @@ export const Folder: React.FC<FolderProps> = ({ id, left, top }) => {
   }
 
   return (
-    <div ref={drag} className={classes.container} style={{ top, left }}>
-      <img src={FolderIcon} alt="folder" />
-      <span> Folder </span>
-    </div>
+    <Container>
+      <div
+        ref={drag}
+        className={classes.container}
+        style={{ top, left, backgroundColor: isSelected ? "#e6f5ff" : "#fff" }}
+      >
+        <img src={FolderIcon} alt="folder" />
+        <span> Folder </span>
+      </div>
+    </Container>
   );
 };
