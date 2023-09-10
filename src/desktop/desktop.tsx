@@ -1,15 +1,6 @@
-import type { FC } from "react";
-import update from "immutability-helper";
-import { useCallback, useState } from "react";
-import type { XYCoord } from "react-dnd";
-import { useDrop } from "react-dnd";
-import { Folder, type DraggableBox } from "./folder/folder";
+import { Folder } from "./folder/folder";
 import { makeStyles } from "@griffel/react";
-
-export interface DragItem extends DraggableBox {
-  type: string;
-  id: string;
-}
+import { useDesktop } from "./hooks/useDesktop";
 
 const useClasses = makeStyles({
   desktop: {
@@ -17,47 +8,14 @@ const useClasses = makeStyles({
   },
 });
 
-export const Desktop: FC = () => {
+export const Desktop = () => {
   const styles = useClasses();
-
-  const [boxes, setBoxes] = useState<{
-    [key: string]: DraggableBox;
-  }>({
-    firstFolder: { top: 60, left: 50 },
-    secondFolder: { top: 60, left: 180 },
-  });
-
-  const moveBox = useCallback(
-    (id: string, left: number, top: number) => {
-      setBoxes(
-        update(boxes, {
-          [id]: {
-            $merge: { left, top },
-          },
-        }),
-      );
-    },
-    [boxes, setBoxes],
-  );
-
-  const [, drop] = useDrop(
-    () => ({
-      accept: "box",
-      drop(item: DragItem, monitor) {
-        const delta = monitor.getDifferenceFromInitialOffset() as XYCoord;
-        const left = Math.round(item.left + delta.x);
-        const top = Math.round(item.top + delta.y);
-
-        moveBox(item.id, left, top);
-      },
-    }),
-    [moveBox],
-  );
+  const { items, canvas } = useDesktop();
 
   return (
-    <div ref={drop} className={styles.desktop}>
-      {Object.keys(boxes).map((key) => (
-        <Folder key={key} id={key} {...boxes[key]} />
+    <div id="canvas" ref={canvas} className={styles.desktop}>
+      {Object.keys(items).map((id) => (
+        <Folder key={id} id={id} {...items[id].position} />
       ))}
     </div>
   );

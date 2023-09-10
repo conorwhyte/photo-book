@@ -1,8 +1,9 @@
 import React from "react";
-import { Breadcrumb, Layout, theme } from "antd";
+import { Breadcrumb, Button, Layout, theme } from "antd";
 import { HomeOutlined } from "@ant-design/icons";
 import { makeStyles, shorthands } from "@griffel/react";
 import "../App.css";
+import { FolderAddOutlined } from "@ant-design/icons";
 
 const { Footer, Content } = Layout;
 
@@ -40,18 +41,29 @@ export const Shell: React.FC<ShellProps> = ({ children }) => {
         </Breadcrumb.Item>
         <Breadcrumb.Item>Desktop</Breadcrumb.Item>
       </Breadcrumb>
+
       <Content
         className={styles.content}
         style={{ background: colorBgContainer }}
       >
         {children}
       </Content>
+
       <Footer
         style={{
           textAlign: "center",
           justifyContent: "space-between",
+          padding: "15px 20px",
         }}
-      />
+      >
+        <Button
+          style={{ float: "right" }}
+          size="large"
+          type="default"
+          shape="circle"
+          icon={<FolderAddOutlined />}
+        />
+      </Footer>
     </Layout>
   );
 };

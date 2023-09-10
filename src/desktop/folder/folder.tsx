@@ -1,15 +1,26 @@
 import React from "react";
 import { makeStyles, shorthands } from "@griffel/react";
-import FolderIcon from "./folder.svg";
-import { useDrag } from "react-dnd";
-import Container from "./container";
+import FolderIcon from "./assets/folder.svg";
+import type { MenuProps } from "antd";
+import { Dropdown } from "antd";
+import { useFolder } from "./hooks/useFolder";
 
-export type DraggableBox = {
-  left: number;
-  top: number;
-};
+const items: MenuProps["items"] = [
+  {
+    label: "Delete",
+    key: "1",
+  },
+  {
+    label: "Open",
+    key: "2",
+  },
+  {
+    label: "Rename",
+    key: "3",
+  },
+];
 
-export interface FolderProps extends DraggableBox {
+export interface FolderProps {
   id: string;
 }
 
@@ -35,35 +46,33 @@ const useClasses = makeStyles({
   },
 });
 
-export const Folder: React.FC<FolderProps> = ({ id, left, top }) => {
-  const isSelected = true;
+export const Folder: React.FC<{ id: string }> = ({ id }) => {
   const classes = useClasses();
 
-  const [{ isDragging }, drag] = useDrag(
-    () => ({
-      type: "box",
-      item: { id, left, top },
-      collect: (monitor) => ({
-        isDragging: monitor.isDragging(),
-      }),
-    }),
-    [id, left, top],
-  );
+  const {
+    context: {
+      isDragging,
+      isSelected,
+      position: { top, left },
+    },
+    handlers: { drag, onSelect },
+  } = useFolder({ name: id });
 
   if (isDragging) {
     return <div ref={drag} />;
   }
 
   return (
-    <Container>
+    <Dropdown menu={{ items }} trigger={["contextMenu"]}>
       <div
         ref={drag}
         className={classes.container}
         style={{ top, left, backgroundColor: isSelected ? "#e6f5ff" : "#fff" }}
+        onClick={onSelect}
       >
         <img src={FolderIcon} alt="folder" />
         <span> Folder </span>
       </div>
-    </Container>
+    </Dropdown>
   );
 };
