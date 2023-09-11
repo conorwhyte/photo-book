@@ -81,7 +81,7 @@ export const useFolder = ({ name }: UseFolderParams) => {
               break;
             case 2:
               // Go to folder
-              navigate(`album/${name}`);
+              navigate(`${name}`);
               break;
           }
         },

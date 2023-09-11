@@ -1,13 +1,13 @@
-import { BrowserRouter } from "react-router-dom";
 import { Routes, Route } from "react-router-dom";
-import { Desktop } from "./desktop/desktop";
+import Desktop from "./desktop";
 import { Album } from "./album/album";
+import { Shell } from "./shell/shell";
 
 export const Router = () => (
-  <BrowserRouter>
-    <Routes>
-      <Route path="/" element={<Desktop />} />
-      <Route path="/album/:name" element={<Album />} />
-    </Routes>
-  </BrowserRouter>
+  <Routes>
+    <Route path="/" element={<Shell />}>
+      <Route path="/albums" element={<Desktop />} />
+      <Route path="/albums/:name" element={<Album />} />
+    </Route>
+  </Routes>
 );
