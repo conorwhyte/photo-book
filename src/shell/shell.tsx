@@ -4,6 +4,8 @@ import { HomeOutlined } from "@ant-design/icons";
 import { makeStyles, shorthands } from "@griffel/react";
 import "../App.css";
 import { FolderAddOutlined } from "@ant-design/icons";
+import { useAppDispatch } from "../store/hooks";
+import { addItem } from "../desktop/desktopSlice";
 
 const { Footer, Content } = Layout;
 
@@ -32,6 +34,8 @@ export const Shell: React.FC<ShellProps> = ({ children }) => {
   } = theme.useToken();
 
   const styles = useClasses();
+
+  const dispatch = useAppDispatch();
 
   return (
     <Layout style={{ padding: "0 24px ", height: "100vh" }}>
@@ -62,6 +66,7 @@ export const Shell: React.FC<ShellProps> = ({ children }) => {
           type="default"
           shape="circle"
           icon={<FolderAddOutlined />}
+          onClick={() => dispatch(addItem())}
         />
       </Footer>
     </Layout>

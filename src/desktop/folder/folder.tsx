@@ -1,28 +1,8 @@
 import React from "react";
 import { makeStyles, shorthands } from "@griffel/react";
 import FolderIcon from "./assets/folder.svg";
-import type { MenuProps } from "antd";
-import { Dropdown } from "antd";
+import { Dropdown, Input } from "antd";
 import { useFolder } from "./hooks/useFolder";
-
-const items: MenuProps["items"] = [
-  {
-    label: "Delete",
-    key: "1",
-  },
-  {
-    label: "Open",
-    key: "2",
-  },
-  {
-    label: "Rename",
-    key: "3",
-  },
-];
-
-export interface FolderProps {
-  id: string;
-}
 
 const useClasses = makeStyles({
   selected: {
@@ -46,32 +26,52 @@ const useClasses = makeStyles({
   },
 });
 
-export const Folder: React.FC<{ id: string }> = ({ id }) => {
+export const Folder: React.FC<{ name: string }> = ({ name }) => {
   const classes = useClasses();
 
   const {
     context: {
+      editMode,
+      folderName,
       isDragging,
       isSelected,
+      menuItems,
       position: { top, left },
     },
-    handlers: { drag, onSelect },
-  } = useFolder({ name: id });
+    handlers: {
+      drag,
+      onBlur,
+      onSelect,
+      onFolderNameChange,
+      onFolderNameSubmit,
+    },
+  } = useFolder({ name });
 
   if (isDragging) {
     return <div ref={drag} />;
   }
 
   return (
-    <Dropdown menu={{ items }} trigger={["contextMenu"]}>
+    <Dropdown menu={{ items: menuItems }} trigger={["contextMenu"]}>
       <div
         ref={drag}
+        tabIndex={0}
         className={classes.container}
         style={{ top, left, backgroundColor: isSelected ? "#e6f5ff" : "#fff" }}
         onClick={onSelect}
+        onBlur={onBlur}
       >
         <img src={FolderIcon} alt="folder" />
-        <span> Folder </span>
+        {editMode ? (
+          <Input
+            value={folderName}
+            onBlur={onFolderNameSubmit}
+            onPressEnter={onFolderNameSubmit}
+            onChange={onFolderNameChange}
+          />
+        ) : (
+          <span> {folderName} </span>
+        )}
       </div>
     </Dropdown>
   );

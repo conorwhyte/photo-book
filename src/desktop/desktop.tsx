@@ -14,8 +14,8 @@ export const Desktop = () => {
 
   return (
     <div id="canvas" ref={canvas} className={styles.desktop}>
-      {Object.keys(items).map((id) => (
-        <Folder key={id} id={id} {...items[id].position} />
+      {Object.keys(items).map((name) => (
+        <Folder key={name} name={name} {...items[name].position} />
       ))}
     </div>
   );

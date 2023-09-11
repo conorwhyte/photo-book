@@ -1,13 +1,14 @@
 import {
-  DesktopItem,
   selectItemWithName,
   selectItems,
   selectSelectedItem,
   selectedItemUpdated,
 } from "../../desktopSlice";
-import { useCallback, useMemo } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../../store/hooks";
 import { useDrag } from "react-dnd";
+import { MenuProps } from "antd";
+import { useNavigate } from "react-router-dom";
 
 export type Position = {
   top: number;
@@ -28,6 +29,26 @@ export const useFolder = ({ name }: UseFolderParams) => {
   const items = useAppSelector(selectItems);
   const selectedItem = useAppSelector(selectSelectedItem);
   const item = selectItemWithName(items, name);
+  const navigate = useNavigate();
+
+  const [folderName, setFolderName] = useState<string>(name);
+  const [editMode, setEditMode] = useState<boolean>(false);
+
+  const menuItems: MenuProps["items"] = [
+    {
+      label: "Delete",
+      key: "1",
+    },
+    {
+      label: "Open",
+      key: "2",
+    },
+    {
+      label: "Rename",
+      key: "3",
+      onClick: () => setEditMode(true),
+    },
+  ];
 
   const [{ isDragging }, drag] = useDrag(
     () => ({
@@ -42,23 +63,39 @@ export const useFolder = ({ name }: UseFolderParams) => {
 
   return {
     context: {
+      editMode,
+      folderName,
       isSelected: useMemo(() => selectedItem === name, [name, selectedItem]),
       isDragging,
+      menuItems,
       ...item,
     },
     handlers: {
       drag,
-      onSelect: useCallback((e: React.MouseEvent<HTMLDivElement>) => {
-        switch (e.detail) {
-          case 1:
-            // Select folder
-            dispatch(selectedItemUpdated(name));
-            break;
-          case 2:
-            // Go to folder
-            break;
-        }
-      }, []),
+      onSelect: useCallback(
+        (e: React.MouseEvent<HTMLDivElement>) => {
+          switch (e.detail) {
+            case 1:
+              // Select folder
+              dispatch(selectedItemUpdated(name));
+              break;
+            case 2:
+              // Go to folder
+              navigate(`album/${name}`);
+              break;
+          }
+        },
+        [dispatch, name, navigate],
+      ),
+      onBlur: useCallback(() => {
+        dispatch(selectedItemUpdated(""));
+      }, [dispatch]),
+      onFolderNameChange: (e: React.ChangeEvent<HTMLInputElement>) => {
+        setFolderName(e.target.value);
+      },
+      onFolderNameSubmit: () => {
+        setEditMode(false);
+      },
     },
   };
 };

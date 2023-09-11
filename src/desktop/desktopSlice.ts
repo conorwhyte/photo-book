@@ -12,8 +12,10 @@ export type DesktopItem = {
   position: Position;
 };
 
+type Items = Record<string, DesktopItem>;
+
 interface DesktopState {
-  items: Record<string, DesktopItem>;
+  items: Items;
   selectedItem?: string;
 }
 
@@ -27,10 +29,39 @@ const initialState: DesktopState = {
   selectedItem: "",
 };
 
+const getNextPosition = (items: Items): Position => {
+  let left = 0;
+  let top = 60;
+
+  const viewWidth = document.getElementById("canvas")?.clientWidth || 1000;
+
+  for (const { position } of Object.values(items)) {
+    if (position.left > left) {
+      left = position.left;
+    }
+
+    if (position.left > viewWidth - 110) {
+      top = position.top + 150;
+      left = -50;
+    }
+  }
+
+  return {
+    top: top,
+    left: left + 110,
+  };
+};
+
 export const desktopSlice = createSlice({
   name: "desktop",
   initialState,
   reducers: {
+    addItem: (state) => {
+      state.items[`New Folder ${Object.values(state.items).length}`] = {
+        type: DesktopItemTypes.Folder,
+        position: getNextPosition(state.items),
+      };
+    },
     itemPositionUpdated: (
       state,
       action: PayloadAction<{ name: string; position: Position }>,
@@ -48,15 +79,12 @@ export const desktopSlice = createSlice({
   },
 });
 
-export const { selectedItemUpdated, itemPositionUpdated } =
+export const { addItem, selectedItemUpdated, itemPositionUpdated } =
   desktopSlice.actions;
 
 export const selectItems = (state: RootState) => state.desktop.items;
 
-export const selectItemWithName = (
-  items: Record<string, DesktopItem>,
-  name: string,
-) => items[name];
+export const selectItemWithName = (items: Items, name: string) => items[name];
 
 export const selectSelectedItem = (state: RootState) =>
   state.desktop.selectedItem;

@@ -1,20 +1,20 @@
 import { Shell } from "./shell/shell";
-import { Desktop } from "./desktop/desktop";
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 import { store } from "./store/store";
 import { Provider } from "react-redux";
+import { Router } from "./Routes";
 
 function App() {
   return (
     <div className="App">
-      <Shell>
-        <Provider store={store}>
+      <Provider store={store}>
+        <Shell>
           <DndProvider backend={HTML5Backend}>
-            <Desktop />
+            <Router />
           </DndProvider>
-        </Provider>
-      </Shell>
+        </Shell>
+      </Provider>
     </div>
   );
 }
