@@ -7,6 +7,7 @@ import { useAppDispatch } from "../store/hooks";
 import { addItem } from "../desktop/desktopSlice";
 import { Outlet, useParams } from "react-router-dom";
 import { BreadcrumbItemType } from "antd/es/breadcrumb/Breadcrumb";
+import { WithAuthenticatorProps } from "@aws-amplify/ui-react";
 
 const { Header, Footer, Content } = Layout;
 
@@ -47,7 +48,7 @@ const defaultItems: BreadcrumbItemType[] = [
   },
 ];
 
-export const Shell: React.FC = () => {
+export const Shell: React.FC<WithAuthenticatorProps> = ({ signOut }) => {
   const [items, setItems] = useState<BreadcrumbItemType[]>(defaultItems);
   const {
     token: { colorBgContainer },
@@ -80,7 +81,12 @@ export const Shell: React.FC = () => {
                 onClick={() => dispatch(addItem())}
               />
               <Button size="large" shape="circle" icon={<UserOutlined />} />
-              <Button size="large" shape="circle" icon={<LogoutOutlined />} />
+              <Button
+                size="large"
+                shape="circle"
+                icon={<LogoutOutlined />}
+                onClick={signOut}
+              />
             </Space>
           </Col>
         </Row>
