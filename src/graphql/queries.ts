@@ -20,6 +20,7 @@ export const getFolder = /* GraphQL */ `
           createdAt
           updatedAt
           folderItemsId
+          owner
           __typename
         }
         nextToken
@@ -27,6 +28,7 @@ export const getFolder = /* GraphQL */ `
       }
       createdAt
       updatedAt
+      owner
       __typename
     }
   }
@@ -52,6 +54,7 @@ export const listFolders = /* GraphQL */ `
         }
         createdAt
         updatedAt
+        owner
         __typename
       }
       nextToken
@@ -79,6 +82,7 @@ export const getItem = /* GraphQL */ `
         }
         createdAt
         updatedAt
+        owner
         __typename
       }
       tags {
@@ -88,6 +92,7 @@ export const getItem = /* GraphQL */ `
           createdAt
           updatedAt
           itemTagsId
+          owner
           __typename
         }
         nextToken
@@ -96,6 +101,7 @@ export const getItem = /* GraphQL */ `
       createdAt
       updatedAt
       folderItemsId
+      owner
       __typename
     }
   }
@@ -116,6 +122,7 @@ export const listItems = /* GraphQL */ `
           name
           createdAt
           updatedAt
+          owner
           __typename
         }
         tags {
@@ -125,6 +132,7 @@ export const listItems = /* GraphQL */ `
         createdAt
         updatedAt
         folderItemsId
+        owner
         __typename
       }
       nextToken
@@ -140,6 +148,7 @@ export const getTag = /* GraphQL */ `
       createdAt
       updatedAt
       itemTagsId
+      owner
       __typename
     }
   }
@@ -157,6 +166,7 @@ export const listTags = /* GraphQL */ `
         createdAt
         updatedAt
         itemTagsId
+        owner
         __typename
       }
       nextToken

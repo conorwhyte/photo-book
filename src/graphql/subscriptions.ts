@@ -3,8 +3,11 @@
 // this is an auto generated file. This will be overwritten
 
 export const onCreateFolder = /* GraphQL */ `
-  subscription OnCreateFolder($filter: ModelSubscriptionFolderFilterInput) {
-    onCreateFolder(filter: $filter) {
+  subscription OnCreateFolder(
+    $filter: ModelSubscriptionFolderFilterInput
+    $owner: String
+  ) {
+    onCreateFolder(filter: $filter, owner: $owner) {
       id
       name
       position {
@@ -20,6 +23,7 @@ export const onCreateFolder = /* GraphQL */ `
           createdAt
           updatedAt
           folderItemsId
+          owner
           __typename
         }
         nextToken
@@ -27,13 +31,17 @@ export const onCreateFolder = /* GraphQL */ `
       }
       createdAt
       updatedAt
+      owner
       __typename
     }
   }
 `;
 export const onUpdateFolder = /* GraphQL */ `
-  subscription OnUpdateFolder($filter: ModelSubscriptionFolderFilterInput) {
-    onUpdateFolder(filter: $filter) {
+  subscription OnUpdateFolder(
+    $filter: ModelSubscriptionFolderFilterInput
+    $owner: String
+  ) {
+    onUpdateFolder(filter: $filter, owner: $owner) {
       id
       name
       position {
@@ -49,6 +57,7 @@ export const onUpdateFolder = /* GraphQL */ `
           createdAt
           updatedAt
           folderItemsId
+          owner
           __typename
         }
         nextToken
@@ -56,13 +65,17 @@ export const onUpdateFolder = /* GraphQL */ `
       }
       createdAt
       updatedAt
+      owner
       __typename
     }
   }
 `;
 export const onDeleteFolder = /* GraphQL */ `
-  subscription OnDeleteFolder($filter: ModelSubscriptionFolderFilterInput) {
-    onDeleteFolder(filter: $filter) {
+  subscription OnDeleteFolder(
+    $filter: ModelSubscriptionFolderFilterInput
+    $owner: String
+  ) {
+    onDeleteFolder(filter: $filter, owner: $owner) {
       id
       name
       position {
@@ -78,6 +91,7 @@ export const onDeleteFolder = /* GraphQL */ `
           createdAt
           updatedAt
           folderItemsId
+          owner
           __typename
         }
         nextToken
@@ -85,13 +99,17 @@ export const onDeleteFolder = /* GraphQL */ `
       }
       createdAt
       updatedAt
+      owner
       __typename
     }
   }
 `;
 export const onCreateItem = /* GraphQL */ `
-  subscription OnCreateItem($filter: ModelSubscriptionItemFilterInput) {
-    onCreateItem(filter: $filter) {
+  subscription OnCreateItem(
+    $filter: ModelSubscriptionItemFilterInput
+    $owner: String
+  ) {
+    onCreateItem(filter: $filter, owner: $owner) {
       id
       name
       type
@@ -109,6 +127,7 @@ export const onCreateItem = /* GraphQL */ `
         }
         createdAt
         updatedAt
+        owner
         __typename
       }
       tags {
@@ -118,6 +137,7 @@ export const onCreateItem = /* GraphQL */ `
           createdAt
           updatedAt
           itemTagsId
+          owner
           __typename
         }
         nextToken
@@ -126,13 +146,17 @@ export const onCreateItem = /* GraphQL */ `
       createdAt
       updatedAt
       folderItemsId
+      owner
       __typename
     }
   }
 `;
 export const onUpdateItem = /* GraphQL */ `
-  subscription OnUpdateItem($filter: ModelSubscriptionItemFilterInput) {
-    onUpdateItem(filter: $filter) {
+  subscription OnUpdateItem(
+    $filter: ModelSubscriptionItemFilterInput
+    $owner: String
+  ) {
+    onUpdateItem(filter: $filter, owner: $owner) {
       id
       name
       type
@@ -150,6 +174,7 @@ export const onUpdateItem = /* GraphQL */ `
         }
         createdAt
         updatedAt
+        owner
         __typename
       }
       tags {
@@ -159,6 +184,7 @@ export const onUpdateItem = /* GraphQL */ `
           createdAt
           updatedAt
           itemTagsId
+          owner
           __typename
         }
         nextToken
@@ -167,13 +193,17 @@ export const onUpdateItem = /* GraphQL */ `
       createdAt
       updatedAt
       folderItemsId
+      owner
       __typename
     }
   }
 `;
 export const onDeleteItem = /* GraphQL */ `
-  subscription OnDeleteItem($filter: ModelSubscriptionItemFilterInput) {
-    onDeleteItem(filter: $filter) {
+  subscription OnDeleteItem(
+    $filter: ModelSubscriptionItemFilterInput
+    $owner: String
+  ) {
+    onDeleteItem(filter: $filter, owner: $owner) {
       id
       name
       type
@@ -191,6 +221,7 @@ export const onDeleteItem = /* GraphQL */ `
         }
         createdAt
         updatedAt
+        owner
         __typename
       }
       tags {
@@ -200,6 +231,7 @@ export const onDeleteItem = /* GraphQL */ `
           createdAt
           updatedAt
           itemTagsId
+          owner
           __typename
         }
         nextToken
@@ -208,42 +240,55 @@ export const onDeleteItem = /* GraphQL */ `
       createdAt
       updatedAt
       folderItemsId
+      owner
       __typename
     }
   }
 `;
 export const onCreateTag = /* GraphQL */ `
-  subscription OnCreateTag($filter: ModelSubscriptionTagFilterInput) {
-    onCreateTag(filter: $filter) {
+  subscription OnCreateTag(
+    $filter: ModelSubscriptionTagFilterInput
+    $owner: String
+  ) {
+    onCreateTag(filter: $filter, owner: $owner) {
       id
       name
       createdAt
       updatedAt
       itemTagsId
+      owner
       __typename
     }
   }
 `;
 export const onUpdateTag = /* GraphQL */ `
-  subscription OnUpdateTag($filter: ModelSubscriptionTagFilterInput) {
-    onUpdateTag(filter: $filter) {
+  subscription OnUpdateTag(
+    $filter: ModelSubscriptionTagFilterInput
+    $owner: String
+  ) {
+    onUpdateTag(filter: $filter, owner: $owner) {
       id
       name
       createdAt
       updatedAt
       itemTagsId
+      owner
       __typename
     }
   }
 `;
 export const onDeleteTag = /* GraphQL */ `
-  subscription OnDeleteTag($filter: ModelSubscriptionTagFilterInput) {
-    onDeleteTag(filter: $filter) {
+  subscription OnDeleteTag(
+    $filter: ModelSubscriptionTagFilterInput
+    $owner: String
+  ) {
+    onDeleteTag(filter: $filter, owner: $owner) {
       id
       name
       createdAt
       updatedAt
       itemTagsId
+      owner
       __typename
     }
   }

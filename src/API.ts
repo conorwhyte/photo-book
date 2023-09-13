@@ -68,6 +68,7 @@ export type Folder = {
   items?: ModelItemConnection | null,
   createdAt: string,
   updatedAt: string,
+  owner?: string | null,
 };
 
 export type Position = {
@@ -92,6 +93,7 @@ export type Item = {
   createdAt: string,
   updatedAt: string,
   folderItemsId?: string | null,
+  owner?: string | null,
 };
 
 export type ModelTagConnection = {
@@ -107,6 +109,7 @@ export type Tag = {
   createdAt: string,
   updatedAt: string,
   itemTagsId?: string | null,
+  owner?: string | null,
 };
 
 export type UpdateFolderInput = {
@@ -296,11 +299,13 @@ export type CreateFolderMutation = {
         createdAt: string,
         updatedAt: string,
         folderItemsId?: string | null,
+        owner?: string | null,
       } | null >,
       nextToken?: string | null,
     } | null,
     createdAt: string,
     updatedAt: string,
+    owner?: string | null,
   } | null,
 };
 
@@ -329,11 +334,13 @@ export type UpdateFolderMutation = {
         createdAt: string,
         updatedAt: string,
         folderItemsId?: string | null,
+        owner?: string | null,
       } | null >,
       nextToken?: string | null,
     } | null,
     createdAt: string,
     updatedAt: string,
+    owner?: string | null,
   } | null,
 };
 
@@ -362,11 +369,13 @@ export type DeleteFolderMutation = {
         createdAt: string,
         updatedAt: string,
         folderItemsId?: string | null,
+        owner?: string | null,
       } | null >,
       nextToken?: string | null,
     } | null,
     createdAt: string,
     updatedAt: string,
+    owner?: string | null,
   } | null,
 };
 
@@ -396,6 +405,7 @@ export type CreateItemMutation = {
       } | null,
       createdAt: string,
       updatedAt: string,
+      owner?: string | null,
     } | null,
     tags?:  {
       __typename: "ModelTagConnection",
@@ -406,12 +416,14 @@ export type CreateItemMutation = {
         createdAt: string,
         updatedAt: string,
         itemTagsId?: string | null,
+        owner?: string | null,
       } | null >,
       nextToken?: string | null,
     } | null,
     createdAt: string,
     updatedAt: string,
     folderItemsId?: string | null,
+    owner?: string | null,
   } | null,
 };
 
@@ -441,6 +453,7 @@ export type UpdateItemMutation = {
       } | null,
       createdAt: string,
       updatedAt: string,
+      owner?: string | null,
     } | null,
     tags?:  {
       __typename: "ModelTagConnection",
@@ -451,12 +464,14 @@ export type UpdateItemMutation = {
         createdAt: string,
         updatedAt: string,
         itemTagsId?: string | null,
+        owner?: string | null,
       } | null >,
       nextToken?: string | null,
     } | null,
     createdAt: string,
     updatedAt: string,
     folderItemsId?: string | null,
+    owner?: string | null,
   } | null,
 };
 
@@ -486,6 +501,7 @@ export type DeleteItemMutation = {
       } | null,
       createdAt: string,
       updatedAt: string,
+      owner?: string | null,
     } | null,
     tags?:  {
       __typename: "ModelTagConnection",
@@ -496,12 +512,14 @@ export type DeleteItemMutation = {
         createdAt: string,
         updatedAt: string,
         itemTagsId?: string | null,
+        owner?: string | null,
       } | null >,
       nextToken?: string | null,
     } | null,
     createdAt: string,
     updatedAt: string,
     folderItemsId?: string | null,
+    owner?: string | null,
   } | null,
 };
 
@@ -518,6 +536,7 @@ export type CreateTagMutation = {
     createdAt: string,
     updatedAt: string,
     itemTagsId?: string | null,
+    owner?: string | null,
   } | null,
 };
 
@@ -534,6 +553,7 @@ export type UpdateTagMutation = {
     createdAt: string,
     updatedAt: string,
     itemTagsId?: string | null,
+    owner?: string | null,
   } | null,
 };
 
@@ -550,6 +570,7 @@ export type DeleteTagMutation = {
     createdAt: string,
     updatedAt: string,
     itemTagsId?: string | null,
+    owner?: string | null,
   } | null,
 };
 
@@ -577,11 +598,13 @@ export type GetFolderQuery = {
         createdAt: string,
         updatedAt: string,
         folderItemsId?: string | null,
+        owner?: string | null,
       } | null >,
       nextToken?: string | null,
     } | null,
     createdAt: string,
     updatedAt: string,
+    owner?: string | null,
   } | null,
 };
 
@@ -609,6 +632,7 @@ export type ListFoldersQuery = {
       } | null,
       createdAt: string,
       updatedAt: string,
+      owner?: string | null,
     } | null >,
     nextToken?: string | null,
   } | null,
@@ -639,6 +663,7 @@ export type GetItemQuery = {
       } | null,
       createdAt: string,
       updatedAt: string,
+      owner?: string | null,
     } | null,
     tags?:  {
       __typename: "ModelTagConnection",
@@ -649,12 +674,14 @@ export type GetItemQuery = {
         createdAt: string,
         updatedAt: string,
         itemTagsId?: string | null,
+        owner?: string | null,
       } | null >,
       nextToken?: string | null,
     } | null,
     createdAt: string,
     updatedAt: string,
     folderItemsId?: string | null,
+    owner?: string | null,
   } | null,
 };
 
@@ -678,6 +705,7 @@ export type ListItemsQuery = {
         name: string,
         createdAt: string,
         updatedAt: string,
+        owner?: string | null,
       } | null,
       tags?:  {
         __typename: "ModelTagConnection",
@@ -686,6 +714,7 @@ export type ListItemsQuery = {
       createdAt: string,
       updatedAt: string,
       folderItemsId?: string | null,
+      owner?: string | null,
     } | null >,
     nextToken?: string | null,
   } | null,
@@ -703,6 +732,7 @@ export type GetTagQuery = {
     createdAt: string,
     updatedAt: string,
     itemTagsId?: string | null,
+    owner?: string | null,
   } | null,
 };
 
@@ -722,6 +752,7 @@ export type ListTagsQuery = {
       createdAt: string,
       updatedAt: string,
       itemTagsId?: string | null,
+      owner?: string | null,
     } | null >,
     nextToken?: string | null,
   } | null,
@@ -729,6 +760,7 @@ export type ListTagsQuery = {
 
 export type OnCreateFolderSubscriptionVariables = {
   filter?: ModelSubscriptionFolderFilterInput | null,
+  owner?: string | null,
 };
 
 export type OnCreateFolderSubscription = {
@@ -751,16 +783,19 @@ export type OnCreateFolderSubscription = {
         createdAt: string,
         updatedAt: string,
         folderItemsId?: string | null,
+        owner?: string | null,
       } | null >,
       nextToken?: string | null,
     } | null,
     createdAt: string,
     updatedAt: string,
+    owner?: string | null,
   } | null,
 };
 
 export type OnUpdateFolderSubscriptionVariables = {
   filter?: ModelSubscriptionFolderFilterInput | null,
+  owner?: string | null,
 };
 
 export type OnUpdateFolderSubscription = {
@@ -783,16 +818,19 @@ export type OnUpdateFolderSubscription = {
         createdAt: string,
         updatedAt: string,
         folderItemsId?: string | null,
+        owner?: string | null,
       } | null >,
       nextToken?: string | null,
     } | null,
     createdAt: string,
     updatedAt: string,
+    owner?: string | null,
   } | null,
 };
 
 export type OnDeleteFolderSubscriptionVariables = {
   filter?: ModelSubscriptionFolderFilterInput | null,
+  owner?: string | null,
 };
 
 export type OnDeleteFolderSubscription = {
@@ -815,16 +853,19 @@ export type OnDeleteFolderSubscription = {
         createdAt: string,
         updatedAt: string,
         folderItemsId?: string | null,
+        owner?: string | null,
       } | null >,
       nextToken?: string | null,
     } | null,
     createdAt: string,
     updatedAt: string,
+    owner?: string | null,
   } | null,
 };
 
 export type OnCreateItemSubscriptionVariables = {
   filter?: ModelSubscriptionItemFilterInput | null,
+  owner?: string | null,
 };
 
 export type OnCreateItemSubscription = {
@@ -848,6 +889,7 @@ export type OnCreateItemSubscription = {
       } | null,
       createdAt: string,
       updatedAt: string,
+      owner?: string | null,
     } | null,
     tags?:  {
       __typename: "ModelTagConnection",
@@ -858,17 +900,20 @@ export type OnCreateItemSubscription = {
         createdAt: string,
         updatedAt: string,
         itemTagsId?: string | null,
+        owner?: string | null,
       } | null >,
       nextToken?: string | null,
     } | null,
     createdAt: string,
     updatedAt: string,
     folderItemsId?: string | null,
+    owner?: string | null,
   } | null,
 };
 
 export type OnUpdateItemSubscriptionVariables = {
   filter?: ModelSubscriptionItemFilterInput | null,
+  owner?: string | null,
 };
 
 export type OnUpdateItemSubscription = {
@@ -892,6 +937,7 @@ export type OnUpdateItemSubscription = {
       } | null,
       createdAt: string,
       updatedAt: string,
+      owner?: string | null,
     } | null,
     tags?:  {
       __typename: "ModelTagConnection",
@@ -902,17 +948,20 @@ export type OnUpdateItemSubscription = {
         createdAt: string,
         updatedAt: string,
         itemTagsId?: string | null,
+        owner?: string | null,
       } | null >,
       nextToken?: string | null,
     } | null,
     createdAt: string,
     updatedAt: string,
     folderItemsId?: string | null,
+    owner?: string | null,
   } | null,
 };
 
 export type OnDeleteItemSubscriptionVariables = {
   filter?: ModelSubscriptionItemFilterInput | null,
+  owner?: string | null,
 };
 
 export type OnDeleteItemSubscription = {
@@ -936,6 +985,7 @@ export type OnDeleteItemSubscription = {
       } | null,
       createdAt: string,
       updatedAt: string,
+      owner?: string | null,
     } | null,
     tags?:  {
       __typename: "ModelTagConnection",
@@ -946,17 +996,20 @@ export type OnDeleteItemSubscription = {
         createdAt: string,
         updatedAt: string,
         itemTagsId?: string | null,
+        owner?: string | null,
       } | null >,
       nextToken?: string | null,
     } | null,
     createdAt: string,
     updatedAt: string,
     folderItemsId?: string | null,
+    owner?: string | null,
   } | null,
 };
 
 export type OnCreateTagSubscriptionVariables = {
   filter?: ModelSubscriptionTagFilterInput | null,
+  owner?: string | null,
 };
 
 export type OnCreateTagSubscription = {
@@ -967,11 +1020,13 @@ export type OnCreateTagSubscription = {
     createdAt: string,
     updatedAt: string,
     itemTagsId?: string | null,
+    owner?: string | null,
   } | null,
 };
 
 export type OnUpdateTagSubscriptionVariables = {
   filter?: ModelSubscriptionTagFilterInput | null,
+  owner?: string | null,
 };
 
 export type OnUpdateTagSubscription = {
@@ -982,11 +1037,13 @@ export type OnUpdateTagSubscription = {
     createdAt: string,
     updatedAt: string,
     itemTagsId?: string | null,
+    owner?: string | null,
   } | null,
 };
 
 export type OnDeleteTagSubscriptionVariables = {
   filter?: ModelSubscriptionTagFilterInput | null,
+  owner?: string | null,
 };
 
 export type OnDeleteTagSubscription = {
@@ -997,5 +1054,6 @@ export type OnDeleteTagSubscription = {
     createdAt: string,
     updatedAt: string,
     itemTagsId?: string | null,
+    owner?: string | null,
   } | null,
 };

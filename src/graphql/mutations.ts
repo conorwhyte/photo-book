@@ -23,6 +23,7 @@ export const createFolder = /* GraphQL */ `
           createdAt
           updatedAt
           folderItemsId
+          owner
           __typename
         }
         nextToken
@@ -30,6 +31,7 @@ export const createFolder = /* GraphQL */ `
       }
       createdAt
       updatedAt
+      owner
       __typename
     }
   }
@@ -55,6 +57,7 @@ export const updateFolder = /* GraphQL */ `
           createdAt
           updatedAt
           folderItemsId
+          owner
           __typename
         }
         nextToken
@@ -62,6 +65,7 @@ export const updateFolder = /* GraphQL */ `
       }
       createdAt
       updatedAt
+      owner
       __typename
     }
   }
@@ -87,6 +91,7 @@ export const deleteFolder = /* GraphQL */ `
           createdAt
           updatedAt
           folderItemsId
+          owner
           __typename
         }
         nextToken
@@ -94,6 +99,7 @@ export const deleteFolder = /* GraphQL */ `
       }
       createdAt
       updatedAt
+      owner
       __typename
     }
   }
@@ -121,6 +127,7 @@ export const createItem = /* GraphQL */ `
         }
         createdAt
         updatedAt
+        owner
         __typename
       }
       tags {
@@ -130,6 +137,7 @@ export const createItem = /* GraphQL */ `
           createdAt
           updatedAt
           itemTagsId
+          owner
           __typename
         }
         nextToken
@@ -138,6 +146,7 @@ export const createItem = /* GraphQL */ `
       createdAt
       updatedAt
       folderItemsId
+      owner
       __typename
     }
   }
@@ -165,6 +174,7 @@ export const updateItem = /* GraphQL */ `
         }
         createdAt
         updatedAt
+        owner
         __typename
       }
       tags {
@@ -174,6 +184,7 @@ export const updateItem = /* GraphQL */ `
           createdAt
           updatedAt
           itemTagsId
+          owner
           __typename
         }
         nextToken
@@ -182,6 +193,7 @@ export const updateItem = /* GraphQL */ `
       createdAt
       updatedAt
       folderItemsId
+      owner
       __typename
     }
   }
@@ -209,6 +221,7 @@ export const deleteItem = /* GraphQL */ `
         }
         createdAt
         updatedAt
+        owner
         __typename
       }
       tags {
@@ -218,6 +231,7 @@ export const deleteItem = /* GraphQL */ `
           createdAt
           updatedAt
           itemTagsId
+          owner
           __typename
         }
         nextToken
@@ -226,6 +240,7 @@ export const deleteItem = /* GraphQL */ `
       createdAt
       updatedAt
       folderItemsId
+      owner
       __typename
     }
   }
@@ -241,6 +256,7 @@ export const createTag = /* GraphQL */ `
       createdAt
       updatedAt
       itemTagsId
+      owner
       __typename
     }
   }
@@ -256,6 +272,7 @@ export const updateTag = /* GraphQL */ `
       createdAt
       updatedAt
       itemTagsId
+      owner
       __typename
     }
   }
@@ -271,6 +288,7 @@ export const deleteTag = /* GraphQL */ `
       createdAt
       updatedAt
       itemTagsId
+      owner
       __typename
     }
   }

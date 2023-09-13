@@ -8,14 +8,14 @@ type Position {
   left: Int!
 }
 
-type Folder @model {
+type Folder @model @auth(rules: [{ allow: owner }]) {
   id: ID!
   name: String!
   position: Position
   items: [Item] @hasMany
 }
 
-type Item @model {
+type Item @model @auth(rules: [{ allow: owner }]) {
   id: ID!
   name: String!
   type: String!
@@ -23,7 +23,7 @@ type Item @model {
   tags: [Tag] @hasMany
 }
 
-type Tag @model {
+type Tag @model @auth(rules: [{ allow: owner }]) {
   id: ID!
   name: String!
 }
