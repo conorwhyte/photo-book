@@ -23,6 +23,9 @@
       },
       "api": {
         "photobook": {}
+      },
+      "storage": {
+        "photoStorage": {}
       }
     }
   }

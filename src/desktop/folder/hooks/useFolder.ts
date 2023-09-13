@@ -10,6 +10,7 @@ import { useDrag } from "react-dnd";
 import { MenuProps } from "antd";
 import { useNavigate } from "react-router-dom";
 import { updateFolder } from "../../services/createFolder";
+import { folderUpdated } from "../../../album/albumSlice";
 
 export type Position = {
   top: number;
@@ -82,11 +83,12 @@ export const useFolder = ({ name }: UseFolderParams) => {
               break;
             case 2:
               // Go to folder
+              dispatch(folderUpdated(item.id));
               navigate(`${name}`);
               break;
           }
         },
-        [dispatch, name, navigate],
+        [dispatch, item.id, name, navigate],
       ),
       onBlur: useCallback(() => {
         dispatch(selectedItemUpdated(""));

@@ -76,5 +76,11 @@
       ]
     }
   },
-  "storage": {}
+  "storage": {
+    "photoStorage": {
+      "dependsOn": [],
+      "providerPlugin": "awscloudformation",
+      "service": "S3"
+    }
+  }
 }

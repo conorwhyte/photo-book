@@ -1,7 +1,10 @@
 import { StorageImage } from "@aws-amplify/ui-react-storage";
+import React from "react";
 
-export const ImageExample = () => {
-  return (
-    <StorageImage alt="cat" imgKey="beacon-logo.png" accessLevel="public" />
-  );
-};
+interface ImageProps {
+  name: string;
+}
+
+export const ImageExample: React.FC<ImageProps> = ({ name }) => (
+  <StorageImage key={name} alt={name} imgKey={name} accessLevel="protected" />
+);

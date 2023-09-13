@@ -1,0 +1,14 @@
+{
+  "resourceName": "photoStorage",
+  "policyUUID": "18ccbcba",
+  "bucketName": "photobookaa30bf0a5db04fb594c71f161056503d",
+  "storageAccess": "auth",
+  "guestAccess": [],
+  "authAccess": [
+    "CREATE_AND_UPDATE",
+    "READ",
+    "DELETE"
+  ],
+  "triggerFunction": "NONE",
+  "groupAccess": {}
+}

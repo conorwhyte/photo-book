@@ -2,21 +2,16 @@ import React, { useState } from "react";
 import { Button, Modal } from "antd";
 import { FileUploader } from "@aws-amplify/ui-react";
 import "@aws-amplify/ui-react/styles.css";
-
-const putImageInFolder = ({ key }: { key: string }) => {
-  const params = {
-    key,
-    folder: "",
-    tags: [],
-  };
-
-  console.log(params);
-};
+import { useUpload } from "./hooks/useUpload";
 
 const Upload = () => {
+  const {
+    handlers: { onImageUpload },
+  } = useUpload();
+
   return (
     <FileUploader
-      onSuccess={putImageInFolder}
+      onSuccess={onImageUpload}
       acceptedFileTypes={["image/*"]}
       accessLevel="protected"
     />

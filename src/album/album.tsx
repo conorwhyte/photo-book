@@ -1,40 +1,38 @@
-import { useState } from "react";
 import Lightbox from "react-image-lightbox";
 import "react-image-lightbox/style.css";
-import { images, CustomImage } from "./images";
 import { Uploader } from "./upload";
 import { ImageExample } from "./image";
 // @ts-ignore
 import Masonry from "react-responsive-masonry";
+import { useAlbum } from "./hooks/useAlbum";
 
 export const Album = () => {
-  const [index, setIndex] = useState(-1);
+  //   const [index, setIndex] = useState(-1);
 
-  const currentImage = images[index];
-  const nextIndex = (index + 1) % images.length;
-  const nextImage = images[nextIndex] || currentImage;
-  const prevIndex = (index + images.length - 1) % images.length;
-  const prevImage = images[prevIndex] || currentImage;
+  //   const currentImage = images[index];
+  //   const nextIndex = (index + 1) % images.length;
+  //   const nextImage = images[nextIndex] || currentImage;
+  //   const prevIndex = (index + images.length - 1) % images.length;
+  //   const prevImage = images[prevIndex] || currentImage;
 
-  const handleClick = (index: number, item: CustomImage) => setIndex(index);
-  const handleClose = () => setIndex(-1);
-  const handleMovePrev = () => setIndex(prevIndex);
-  const handleMoveNext = () => setIndex(nextIndex);
+  //   const handleClick = (index: number, item: CustomImage) => setIndex(index);
+  //   const handleClose = () => setIndex(-1);
+  //   const handleMovePrev = () => setIndex(prevIndex);
+  //   const handleMoveNext = () => setIndex(nextIndex);
+
+  const { items } = useAlbum();
 
   return (
     <div>
       <Uploader />
 
-      <ImageExample />
       <Masonry columnsCount={3} gutter="10px">
-        {images.map((image) => (
-          <img
-            src={image.src}
-            alt="ske"
-            onClick={() => handleClick(1, image)}
-          />
+        {items.map(({ name }) => (
+          <ImageExample key={name} name={name} />
         ))}
       </Masonry>
+
+      {/*
       {!!currentImage && (
         <Lightbox
           mainSrc={currentImage.original}
@@ -48,7 +46,7 @@ export const Album = () => {
           onMovePrevRequest={handleMovePrev}
           onMoveNextRequest={handleMoveNext}
         />
-      )}
+      )} */}
     </div>
   );
 };
