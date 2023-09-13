@@ -17,6 +17,9 @@
           "appId": "d2uuzy6hyvk24k",
           "type": "cicd"
         }
+      },
+      "auth": {
+        "photobook4c9dcc79": {}
       }
     }
   }
