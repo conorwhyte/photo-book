@@ -1,4 +1,10 @@
 export type AmplifyDependentResourcesAttributes = {
+  "api": {
+    "photobook": {
+      "GraphQLAPIEndpointOutput": "string",
+      "GraphQLAPIIdOutput": "string"
+    }
+  },
   "auth": {
     "photobook4c9dcc79": {
       "AppClientID": "string",

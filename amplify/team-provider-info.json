@@ -20,6 +20,9 @@
       },
       "auth": {
         "photobook4c9dcc79": {}
+      },
+      "api": {
+        "photobook": {}
       }
     }
   }
