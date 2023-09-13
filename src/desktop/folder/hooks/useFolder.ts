@@ -9,6 +9,7 @@ import { useAppDispatch, useAppSelector } from "../../../store/hooks";
 import { useDrag } from "react-dnd";
 import { MenuProps } from "antd";
 import { useNavigate } from "react-router-dom";
+import { updateFolder } from "../../services/createFolder";
 
 export type Position = {
   top: number;
@@ -94,6 +95,13 @@ export const useFolder = ({ name }: UseFolderParams) => {
         setFolderName(e.target.value);
       },
       onFolderNameSubmit: () => {
+        dispatch(
+          updateFolder({
+            name: folderName,
+            id: item.id,
+            position: item.position,
+          }),
+        );
         setEditMode(false);
       },
     },

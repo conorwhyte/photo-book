@@ -2,12 +2,14 @@ import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import type { RootState } from "../store/store";
 import { Position } from "./folder/hooks/useFolder";
+import { listFolders } from "./services/listFolder";
 
 export enum DesktopItemTypes {
   Folder,
 }
 
 export type DesktopItem = {
+  id: string;
   type: DesktopItemTypes;
   position: Position;
 };
@@ -20,12 +22,7 @@ interface DesktopState {
 }
 
 const initialState: DesktopState = {
-  items: {
-    "Folder 1": {
-      type: DesktopItemTypes.Folder,
-      position: { top: 60, left: 50 },
-    },
-  },
+  items: {},
   selectedItem: "",
 };
 
@@ -33,12 +30,6 @@ export const desktopSlice = createSlice({
   name: "desktop",
   initialState,
   reducers: {
-    addItem: (state) => {
-      // state.items[`New Folder ${Object.values(state.items).length}`] = {
-      //   type: DesktopItemTypes.Folder,
-      //   position: getNextPosition(state.items),
-      // };
-    },
     itemPositionUpdated: (
       state,
       action: PayloadAction<{ name: string; position: Position }>,
@@ -54,9 +45,26 @@ export const desktopSlice = createSlice({
       state.selectedItem = action.payload;
     },
   },
+  extraReducers: (builder) => {
+    builder.addCase(listFolders.fulfilled, (state, action) => {
+      const folders = action.payload?.listFolders;
+
+      const items = folders?.items.reduce((acc, item) => {
+        return {
+          ...acc,
+          [item?.name || ""]: {
+            ...item,
+            type: DesktopItemTypes.Folder,
+          },
+        };
+      }, {});
+
+      state.items = items || {};
+    });
+  },
 });
 
-export const { addItem, selectedItemUpdated, itemPositionUpdated } =
+export const { selectedItemUpdated, itemPositionUpdated } =
   desktopSlice.actions;
 
 export const selectItems = (state: RootState) => state.desktop.items;

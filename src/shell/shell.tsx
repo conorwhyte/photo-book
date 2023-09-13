@@ -4,11 +4,10 @@ import { HomeOutlined, UserOutlined, LogoutOutlined } from "@ant-design/icons";
 import { makeStyles, shorthands } from "@griffel/react";
 import { FolderAddOutlined } from "@ant-design/icons";
 import { useAppDispatch } from "../store/hooks";
-import { addItem } from "../desktop/desktopSlice";
 import { Outlet, useParams } from "react-router-dom";
 import { BreadcrumbItemType } from "antd/es/breadcrumb/Breadcrumb";
 import { WithAuthenticatorProps } from "@aws-amplify/ui-react";
-import { createFolder } from "../desktop/createFolder";
+import { createFolder } from "../desktop/services/createFolder";
 
 const { Header, Footer, Content } = Layout;
 

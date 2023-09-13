@@ -1,9 +1,15 @@
-import { useCallback } from "react";
+import { useCallback, useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../../store/hooks";
-import { itemPositionUpdated, selectItems } from "../desktopSlice";
+import {
+  itemPositionUpdated,
+  selectItemWithName,
+  selectItems,
+} from "../desktopSlice";
 import type { XYCoord } from "react-dnd";
 import { useDrop } from "react-dnd";
 import { Position } from "../folder/hooks/useFolder";
+import { listFolders } from "../services/listFolder";
+import { updateFolder } from "../services/createFolder";
 
 export interface DragItem extends Position {
   type: string;
@@ -14,11 +20,18 @@ export const useDesktop = () => {
   const items = useAppSelector(selectItems);
   const dispatch = useAppDispatch();
 
+  useEffect(() => {
+    dispatch(listFolders());
+  }, [dispatch]);
+
   const moveItem = useCallback(
-    (id: string, left: number, top: number) => {
-      dispatch(itemPositionUpdated({ name: id, position: { left, top } }));
+    (name: string, left: number, top: number) => {
+      const item = selectItemWithName(items, name);
+
+      dispatch(updateFolder({ id: item.id, name, position: { left, top } }));
+      dispatch(itemPositionUpdated({ name, position: { left, top } }));
     },
-    [dispatch],
+    [dispatch, items],
   );
 
   const [, canvas] = useDrop(
