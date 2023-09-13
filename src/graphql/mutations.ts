@@ -16,6 +16,15 @@ export const createFolder = /* GraphQL */ `
         __typename
       }
       items {
+        items {
+          id
+          name
+          type
+          createdAt
+          updatedAt
+          folderItemsId
+          __typename
+        }
         nextToken
         __typename
       }
@@ -39,6 +48,15 @@ export const updateFolder = /* GraphQL */ `
         __typename
       }
       items {
+        items {
+          id
+          name
+          type
+          createdAt
+          updatedAt
+          folderItemsId
+          __typename
+        }
         nextToken
         __typename
       }
@@ -62,6 +80,15 @@ export const deleteFolder = /* GraphQL */ `
         __typename
       }
       items {
+        items {
+          id
+          name
+          type
+          createdAt
+          updatedAt
+          folderItemsId
+          __typename
+        }
         nextToken
         __typename
       }
@@ -83,11 +110,28 @@ export const createItem = /* GraphQL */ `
       folder {
         id
         name
+        position {
+          top
+          left
+          __typename
+        }
+        items {
+          nextToken
+          __typename
+        }
         createdAt
         updatedAt
         __typename
       }
       tags {
+        items {
+          id
+          name
+          createdAt
+          updatedAt
+          itemTagsId
+          __typename
+        }
         nextToken
         __typename
       }
@@ -110,11 +154,28 @@ export const updateItem = /* GraphQL */ `
       folder {
         id
         name
+        position {
+          top
+          left
+          __typename
+        }
+        items {
+          nextToken
+          __typename
+        }
         createdAt
         updatedAt
         __typename
       }
       tags {
+        items {
+          id
+          name
+          createdAt
+          updatedAt
+          itemTagsId
+          __typename
+        }
         nextToken
         __typename
       }
@@ -137,11 +198,28 @@ export const deleteItem = /* GraphQL */ `
       folder {
         id
         name
+        position {
+          top
+          left
+          __typename
+        }
+        items {
+          nextToken
+          __typename
+        }
         createdAt
         updatedAt
         __typename
       }
       tags {
+        items {
+          id
+          name
+          createdAt
+          updatedAt
+          itemTagsId
+          __typename
+        }
         nextToken
         __typename
       }
