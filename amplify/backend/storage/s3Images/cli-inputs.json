@@ -1,0 +1,14 @@
+{
+  "resourceName": "s3Images",
+  "policyUUID": "d15fc247",
+  "bucketName": "conorwhyte-photobook-images",
+  "storageAccess": "auth",
+  "guestAccess": [],
+  "authAccess": [
+    "CREATE_AND_UPDATE",
+    "READ",
+    "DELETE"
+  ],
+  "triggerFunction": "NONE",
+  "groupAccess": {}
+}

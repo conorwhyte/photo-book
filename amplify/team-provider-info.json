@@ -20,6 +20,9 @@
       },
       "auth": {
         "photobook176e2eb2": {}
+      },
+      "storage": {
+        "s3Images": {}
       }
     }
   }

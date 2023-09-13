@@ -1,8 +1,11 @@
 import { useState } from "react";
-import { Gallery } from "react-grid-gallery";
 import Lightbox from "react-image-lightbox";
 import "react-image-lightbox/style.css";
 import { images, CustomImage } from "./images";
+import { Uploader } from "./upload";
+import { ImageExample } from "./image";
+// @ts-ignore
+import Masonry from "react-responsive-masonry";
 
 export const Album = () => {
   const [index, setIndex] = useState(-1);
@@ -20,11 +23,18 @@ export const Album = () => {
 
   return (
     <div>
-      <Gallery
-        images={images}
-        onClick={handleClick}
-        enableImageSelection={false}
-      />
+      <Uploader />
+
+      <ImageExample />
+      <Masonry columnsCount={3} gutter="10px">
+        {images.map((image) => (
+          <img
+            src={image.src}
+            alt="ske"
+            onClick={() => handleClick(1, image)}
+          />
+        ))}
+      </Masonry>
       {!!currentImage && (
         <Lightbox
           mainSrc={currentImage.original}

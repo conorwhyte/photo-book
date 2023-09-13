@@ -48,7 +48,8 @@ const defaultItems: BreadcrumbItemType[] = [
   },
 ];
 
-export const Shell: React.FC<WithAuthenticatorProps> = ({ signOut }) => {
+export const Shell: React.FC<WithAuthenticatorProps> = (props) => {
+  const { signOut } = props;
   const [items, setItems] = useState<BreadcrumbItemType[]>(defaultItems);
   const {
     token: { colorBgContainer },
@@ -57,6 +58,8 @@ export const Shell: React.FC<WithAuthenticatorProps> = ({ signOut }) => {
   const styles = useClasses();
   const dispatch = useAppDispatch();
   const { name } = useParams();
+
+  console.log("PRops:: ", props);
 
   useEffect(() => {
     setItems((currentItems) => [

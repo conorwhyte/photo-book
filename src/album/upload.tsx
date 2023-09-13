@@ -1,0 +1,56 @@
+import React, { useState } from "react";
+import { Button, Modal } from "antd";
+import { FileUploader } from "@aws-amplify/ui-react";
+import "@aws-amplify/ui-react/styles.css";
+
+const putImageInFolder = ({ key }: { key: string }) => {
+  const params = {
+    key,
+    folder: "",
+    tags: [],
+  };
+
+  console.log(params);
+};
+
+const Upload = () => {
+  return (
+    <FileUploader
+      onSuccess={putImageInFolder}
+      acceptedFileTypes={["image/*"]}
+      accessLevel="protected"
+    />
+  );
+};
+
+export const Uploader: React.FC = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const showModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleOk = () => {
+    setIsModalOpen(false);
+  };
+
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
+
+  return (
+    <>
+      <Button type="primary" onClick={showModal}>
+        Open Modal
+      </Button>
+      <Modal
+        title="Basic Modal"
+        open={isModalOpen}
+        onOk={handleOk}
+        onCancel={handleCancel}
+      >
+        <Upload />
+      </Modal>
+    </>
+  );
+};

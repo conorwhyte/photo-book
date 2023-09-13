@@ -280,7 +280,19 @@
     lodash "4.17.21"
     xstate "^4.33.6"
 
-"@aws-amplify/ui-react@^5.3.0":
+"@aws-amplify/ui-react-storage@^2.3.0":
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/@aws-amplify/ui-react-storage/-/ui-react-storage-2.3.0.tgz#5ad7d9ebf6107875c1d8e3e9b1dcb0504368e57b"
+  integrity sha512-U892XH6Xv2wlRfuTBeExShNjmVPFxP9V0zk3wrpL/mlClcvjY1lTdiyHKsq3tlSuwoPunkdYP2UoiNpqLWhPJg==
+  dependencies:
+    "@aws-amplify/ui" "5.8.0"
+    "@aws-amplify/ui-react" "5.3.0"
+    "@aws-amplify/ui-react-core" "2.1.32"
+    classnames "2.3.1"
+    lodash "4.17.21"
+    tslib "2.4.1"
+
+"@aws-amplify/ui-react@5.3.0", "@aws-amplify/ui-react@^5.3.0":
   version "5.3.0"
   resolved "https://registry.yarnpkg.com/@aws-amplify/ui-react/-/ui-react-5.3.0.tgz#160bdd22f0a11a60df15b76e038cd10162f9fdf1"
   integrity sha512-Ih29xThYhcgh3vY0rr6ILomBITOdN6Q474siIozqw2pJbv9KXaWs5VVFy7/lry22tOdW6M6h//mznFa+KVt1rQ==
@@ -11085,6 +11097,11 @@ react-remove-scroll@2.5.4:
     tslib "^2.1.0"
     use-callback-ref "^1.3.0"
     use-sidecar "^1.1.2"
+
+react-responsive-masonry@^2.1.7:
+  version "2.1.7"
+  resolved "https://registry.yarnpkg.com/react-responsive-masonry/-/react-responsive-masonry-2.1.7.tgz#9b4a8d63b296a6265bea720c9d7da89754548346"
+  integrity sha512-/jOqnTVNtO8zRJMTl6ZXBex7EFYEIFBLVlkIFjiCT7omfm0CgNF2z4ST8RIr0v2ut15NWAQs7Q3kJJPhMoe3Ew==
 
 react-router-dom@^6.15.0:
   version "6.15.0"
