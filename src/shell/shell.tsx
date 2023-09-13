@@ -8,6 +8,7 @@ import { addItem } from "../desktop/desktopSlice";
 import { Outlet, useParams } from "react-router-dom";
 import { BreadcrumbItemType } from "antd/es/breadcrumb/Breadcrumb";
 import { WithAuthenticatorProps } from "@aws-amplify/ui-react";
+import { createFolder } from "../desktop/createFolder";
 
 const { Header, Footer, Content } = Layout;
 
@@ -59,8 +60,6 @@ export const Shell: React.FC<WithAuthenticatorProps> = (props) => {
   const dispatch = useAppDispatch();
   const { name } = useParams();
 
-  console.log("PRops:: ", props);
-
   useEffect(() => {
     setItems((currentItems) => [
       ...currentItems,
@@ -81,7 +80,7 @@ export const Shell: React.FC<WithAuthenticatorProps> = (props) => {
                 size="large"
                 shape="circle"
                 icon={<FolderAddOutlined />}
-                onClick={() => dispatch(addItem())}
+                onClick={() => dispatch(createFolder())}
               />
               <Button size="large" shape="circle" icon={<UserOutlined />} />
               <Button

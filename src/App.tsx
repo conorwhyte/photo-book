@@ -13,7 +13,7 @@ Amplify.configure(awsconfig);
 export function App() {
   return (
     <div className="App">
-      <Authenticator hideSignUp={true} socialProviders={[]}>
+      <Authenticator hideSignUp={true}>
         {(authProps: WithAuthenticatorProps) => (
           <BrowserRouter>
             <Provider store={store}>
