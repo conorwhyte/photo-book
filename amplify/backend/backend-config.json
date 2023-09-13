@@ -1,56 +1,6 @@
 {
-  "api": {
-    "photobook": {
-      "dependsOn": [
-        {
-          "attributes": [
-            "UserPoolId"
-          ],
-          "category": "auth",
-          "resourceName": "photobook176e2eb2"
-        }
-      ],
-      "output": {
-        "authConfig": {
-          "additionalAuthenticationProviders": [],
-          "defaultAuthentication": {
-            "authenticationType": "AMAZON_COGNITO_USER_POOLS",
-            "userPoolConfig": {
-              "userPoolId": "authphotobook176e2eb2"
-            }
-          }
-        }
-      },
-      "providerPlugin": "awscloudformation",
-      "service": "AppSync"
-    }
-  },
-  "auth": {
-    "photobook176e2eb2": {
-      "customAuth": false,
-      "dependsOn": [],
-      "frontendAuthConfig": {
-        "mfaConfiguration": "OFF",
-        "mfaTypes": [
-          "SMS"
-        ],
-        "passwordProtectionSettings": {
-          "passwordPolicyCharacters": [],
-          "passwordPolicyMinLength": 8
-        },
-        "signupAttributes": [
-          "EMAIL"
-        ],
-        "socialProviders": [],
-        "usernameAttributes": [],
-        "verificationMechanisms": [
-          "EMAIL"
-        ]
-      },
-      "providerPlugin": "awscloudformation",
-      "service": "Cognito"
-    }
-  },
+  "api": {},
+  "auth": {},
   "hosting": {
     "amplifyhosting": {
       "lastPushTimeStamp": "2023-09-11T14:52:39.882Z",
@@ -76,11 +26,5 @@
       ]
     }
   },
-  "storage": {
-    "s3Images": {
-      "dependsOn": [],
-      "providerPlugin": "awscloudformation",
-      "service": "S3"
-    }
-  }
+  "storage": {}
 }
