@@ -23,9 +23,6 @@
       },
       "storage": {
         "s3Images": {}
-      },
-      "api": {
-        "photobook": {}
       }
     }
   }
