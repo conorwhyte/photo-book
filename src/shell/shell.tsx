@@ -1,13 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { Breadcrumb, Button, Col, Layout, Row, Space, theme } from "antd";
-import { HomeOutlined, UserOutlined, LogoutOutlined } from "@ant-design/icons";
+import {
+  HomeOutlined,
+  LogoutOutlined,
+  UnorderedListOutlined,
+  DesktopOutlined,
+} from "@ant-design/icons";
 import { makeStyles, shorthands } from "@griffel/react";
 import { FolderAddOutlined } from "@ant-design/icons";
-import { useAppDispatch } from "../store/hooks";
+import { useAppDispatch, useAppSelector } from "../store/hooks";
 import { Outlet, useParams, useLocation, useNavigate } from "react-router-dom";
 import { BreadcrumbItemType } from "antd/es/breadcrumb/Breadcrumb";
 import { WithAuthenticatorProps } from "@aws-amplify/ui-react";
 import { createFolder } from "../desktop/services/createFolder";
+import { Display, changeDisplay, selectDisplay } from "../desktop/desktopSlice";
 
 const { Header, Footer, Content } = Layout;
 
@@ -69,6 +75,14 @@ export const Shell: React.FC<WithAuthenticatorProps> = (props) => {
     ]);
   }, [name]);
 
+  const display = useAppSelector(selectDisplay);
+  const displayIcon =
+    display === Display.Desktop ? (
+      <UnorderedListOutlined />
+    ) : (
+      <DesktopOutlined />
+    );
+
   return (
     <Layout style={{ padding: "0 15px" }}>
       <Header style={headerStyle}>
@@ -79,14 +93,21 @@ export const Shell: React.FC<WithAuthenticatorProps> = (props) => {
           <Col span={12}>
             <Space wrap style={{ float: "right" }}>
               {!name && (
-                <Button
-                  size="large"
-                  shape="circle"
-                  icon={<FolderAddOutlined />}
-                  onClick={() => dispatch(createFolder())}
-                />
+                <>
+                  <Button
+                    size="large"
+                    shape="circle"
+                    icon={<FolderAddOutlined />}
+                    onClick={() => dispatch(createFolder())}
+                  />
+                  <Button
+                    size="large"
+                    shape="circle"
+                    icon={displayIcon}
+                    onClick={() => dispatch(changeDisplay())}
+                  />
+                </>
               )}
-              <Button size="large" shape="circle" icon={<UserOutlined />} />
               <Button
                 size="large"
                 shape="circle"

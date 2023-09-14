@@ -3,15 +3,22 @@ import type { PayloadAction } from "@reduxjs/toolkit";
 import type { RootState } from "../store/store";
 import { Position } from "./folder/hooks/useFolder";
 import { listFolders } from "./services/listFolder";
+import { isMobile } from "../utils/mobile";
 
 export enum DesktopItemTypes {
   Folder,
+}
+
+export enum Display {
+  Desktop,
+  List,
 }
 
 export type DesktopItem = {
   id: string;
   type: DesktopItemTypes;
   position: Position;
+  name: string;
 };
 
 export type Items = Record<string, DesktopItem>;
@@ -19,11 +26,13 @@ export type Items = Record<string, DesktopItem>;
 interface DesktopState {
   items: Items;
   selectedItem?: string;
+  display: Display;
 }
 
 const initialState: DesktopState = {
   items: {},
   selectedItem: "",
+  display: isMobile() ? Display.List : Display.Desktop,
 };
 
 export const desktopSlice = createSlice({
@@ -40,6 +49,10 @@ export const desktopSlice = createSlice({
         ...state.items[name],
         position,
       };
+    },
+    changeDisplay: (state) => {
+      state.display =
+        state.display === Display.Desktop ? Display.List : Display.Desktop;
     },
     selectedItemUpdated: (state, action: PayloadAction<string>) => {
       state.selectedItem = action.payload;
@@ -64,8 +77,10 @@ export const desktopSlice = createSlice({
   },
 });
 
-export const { selectedItemUpdated, itemPositionUpdated } =
+export const { selectedItemUpdated, itemPositionUpdated, changeDisplay } =
   desktopSlice.actions;
+
+export const selectDisplay = (state: RootState) => state.desktop.display;
 
 export const selectItems = (state: RootState) => state.desktop.items;
 
