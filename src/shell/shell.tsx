@@ -99,6 +99,7 @@ export const Shell: React.FC<WithAuthenticatorProps> = (props) => {
       </Header>
 
       <Content
+        id="content"
         className={styles.content}
         style={{ background: colorBgContainer }}
       >
