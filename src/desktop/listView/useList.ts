@@ -4,10 +4,13 @@ import { DesktopItem, selectItems } from "../desktopSlice";
 import { listFolders } from "../services/listFolder";
 import { deleteFolder } from "../services/deleteFolder";
 import { updateFolder } from "../services/createFolder";
+import { useNavigate } from "react-router-dom";
+import { folderUpdated } from "../../album/albumSlice";
 
 export const useList = () => {
   const items = useAppSelector(selectItems);
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const [folderName, setFolderName] = useState<string>("");
   const [editMode, setEditMode] = useState(false);
@@ -27,6 +30,10 @@ export const useList = () => {
         setFolderName(item.name);
         setEditingFolder(item);
       },
+      onNavigate: () => {
+        dispatch(folderUpdated(item.id));
+        navigate(`${item.name}`);
+      },
     },
   }));
 
@@ -39,7 +46,6 @@ export const useList = () => {
         setFolderName(e.target.value);
       },
       onFolderNameSubmit: () => {
-        console.log(editingFolder);
         const position = {
           top: editingFolder?.position.top || 0,
           left: editingFolder?.position.left || 0,

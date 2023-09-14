@@ -16,7 +16,7 @@ export const ListFiles: React.FC = () => {
     <List
       itemLayout="horizontal"
       dataSource={listData}
-      renderItem={(item, index) => (
+      renderItem={(item) => (
         <List.Item
           actions={[
             <Button
@@ -42,7 +42,9 @@ export const ListFiles: React.FC = () => {
                   onChange={onFolderNameChange}
                 />
               ) : (
-                <Link to={item.title}>{item.title}</Link>
+                <Link onClick={item.handlers.onNavigate} to={item.title}>
+                  {item.title}
+                </Link>
               )
             }
           />

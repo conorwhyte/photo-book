@@ -18,6 +18,8 @@ export const createItem = createAsyncThunk(
       folderItemsId: folderId,
     };
 
+    console.log(item);
+
     const response = await API.graphql<GraphQLQuery<CreateItemMutation>>(
       graphqlOperation(createItemService, {
         input: item,

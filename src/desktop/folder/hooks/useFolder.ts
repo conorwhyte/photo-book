@@ -85,6 +85,7 @@ export const useFolder = ({ name }: UseFolderParams) => {
               break;
             case 2:
               // Go to folder
+              console.log(item.id, name);
               dispatch(folderUpdated(item.id));
               navigate(`${name}`);
               break;
