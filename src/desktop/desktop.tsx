@@ -18,6 +18,8 @@ export const Desktop = () => {
 
   const backend = isMobile() ? TouchBackend : HTML5Backend;
 
+  console.log("");
+
   return (
     <div style={{ height: "100vh" }}>
       <DndProvider backend={backend}>
