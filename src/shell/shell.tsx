@@ -4,7 +4,7 @@ import { HomeOutlined, UserOutlined, LogoutOutlined } from "@ant-design/icons";
 import { makeStyles, shorthands } from "@griffel/react";
 import { FolderAddOutlined } from "@ant-design/icons";
 import { useAppDispatch } from "../store/hooks";
-import { Outlet, useParams } from "react-router-dom";
+import { Outlet, useParams, useLocation, useNavigate } from "react-router-dom";
 import { BreadcrumbItemType } from "antd/es/breadcrumb/Breadcrumb";
 import { WithAuthenticatorProps } from "@aws-amplify/ui-react";
 import { createFolder } from "../desktop/services/createFolder";
@@ -33,18 +33,13 @@ const useClasses = makeStyles({
   content: {
     ...shorthands.padding("10px"),
     ...shorthands.margin("0px"),
-    minHeight: "280px",
   },
 });
 
 const defaultItems: BreadcrumbItemType[] = [
   {
-    href: "/",
-    title: <HomeOutlined />,
-  },
-  {
     href: "/albums",
-    title: "Albums",
+    title: <HomeOutlined />,
   },
 ];
 
@@ -58,6 +53,14 @@ export const Shell: React.FC<WithAuthenticatorProps> = (props) => {
   const styles = useClasses();
   const dispatch = useAppDispatch();
   const { name } = useParams();
+  const { pathname } = useLocation();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (pathname === "/") {
+      navigate("/albums");
+    }
+  }, [pathname, navigate]);
 
   useEffect(() => {
     setItems((currentItems) => [
@@ -67,7 +70,7 @@ export const Shell: React.FC<WithAuthenticatorProps> = (props) => {
   }, [name]);
 
   return (
-    <Layout style={{ padding: "0 24px ", height: "100vh" }}>
+    <Layout style={{ padding: "0 24px" }}>
       <Header style={headerStyle}>
         <Row>
           <Col span={12}>
@@ -75,12 +78,14 @@ export const Shell: React.FC<WithAuthenticatorProps> = (props) => {
           </Col>
           <Col span={12}>
             <Space wrap style={{ float: "right" }}>
-              <Button
-                size="large"
-                shape="circle"
-                icon={<FolderAddOutlined />}
-                onClick={() => dispatch(createFolder())}
-              />
+              {!name && (
+                <Button
+                  size="large"
+                  shape="circle"
+                  icon={<FolderAddOutlined />}
+                  onClick={() => dispatch(createFolder())}
+                />
+              )}
               <Button size="large" shape="circle" icon={<UserOutlined />} />
               <Button
                 size="large"

@@ -15,12 +15,14 @@ export const Desktop = () => {
   const { items, canvas } = useDesktop();
 
   return (
-    <DndProvider backend={HTML5Backend}>
-      <div id="canvas" ref={canvas} className={styles.desktop}>
-        {Object.keys(items).map((name) => (
-          <Folder key={name} name={name} {...items[name].position} />
-        ))}
-      </div>
-    </DndProvider>
+    <div style={{ height: "100vh" }}>
+      <DndProvider backend={HTML5Backend}>
+        <div id="canvas" ref={canvas} className={styles.desktop}>
+          {Object.keys(items).map((name) => (
+            <Folder key={name} name={name} {...items[name].position} />
+          ))}
+        </div>
+      </DndProvider>
+    </div>
   );
 };

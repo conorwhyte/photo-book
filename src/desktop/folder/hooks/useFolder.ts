@@ -11,6 +11,7 @@ import { MenuProps } from "antd";
 import { useNavigate } from "react-router-dom";
 import { updateFolder } from "../../services/createFolder";
 import { folderUpdated } from "../../../album/albumSlice";
+import { deleteFolder } from "../../services/deleteFolder";
 
 export type Position = {
   top: number;
@@ -40,6 +41,7 @@ export const useFolder = ({ name }: UseFolderParams) => {
     {
       label: "Delete",
       key: "1",
+      onClick: () => dispatch(deleteFolder({ id: item.id })),
     },
     {
       label: "Open",

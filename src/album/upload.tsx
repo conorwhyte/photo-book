@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import { Button, Modal } from "antd";
+import { FloatButton, Modal } from "antd";
 import { FileUploader } from "@aws-amplify/ui-react";
 import "@aws-amplify/ui-react/styles.css";
 import { useUpload } from "./hooks/useUpload";
+import { UploadOutlined } from "@ant-design/icons";
 
 const Upload = () => {
   const {
@@ -35,9 +36,11 @@ export const Uploader: React.FC = () => {
 
   return (
     <>
-      <Button type="primary" onClick={showModal}>
-        Open Modal
-      </Button>
+      <FloatButton
+        style={{ right: "40px" }}
+        icon={<UploadOutlined />}
+        onClick={showModal}
+      />
       <Modal
         title="Basic Modal"
         open={isModalOpen}
