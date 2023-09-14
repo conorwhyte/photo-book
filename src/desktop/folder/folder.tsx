@@ -3,6 +3,7 @@ import { makeStyles, shorthands } from "@griffel/react";
 import FolderIcon from "./assets/folder.svg";
 import { Dropdown, Input } from "antd";
 import { useFolder } from "./hooks/useFolder";
+import { mobileCheck } from "../../utils/mobile";
 
 const useClasses = makeStyles({
   selected: {
@@ -15,12 +16,12 @@ const useClasses = makeStyles({
     position: "absolute",
     cursor: "pointer",
     color: "#535b62",
-    // marginBottom: "22px",
+    marginBottom: "22px",
     flexDirection: "column",
     justifyContent: "space-between",
     alignItems: "center",
     ...shorthands.padding("8px"),
-    // ...shorthands.transition("background", "230ms", "ease-in"),
+    ...shorthands.transition("background", "230ms", "ease-in"),
     ...shorthands.borderRadius("8px"),
     ":hover": { backgroundColor: "#e6f5ff" },
   },
@@ -51,11 +52,13 @@ export const Folder: React.FC<{ name: string }> = ({ name }) => {
     return <div ref={drag} />;
   }
 
+  const ContainerDropdown = mobileCheck() ? React.Fragment : Dropdown;
+
   return (
-    <Dropdown menu={{ items: menuItems }} trigger={["contextMenu"]}>
+    <ContainerDropdown menu={{ items: menuItems }} trigger={["contextMenu"]}>
       <div
         ref={drag}
-        tabIndex={0}
+        // tabIndex={0}
         className={classes.container}
         style={{ top, left, backgroundColor: isSelected ? "#e6f5ff" : "#fff" }}
         onClick={onSelect}
@@ -73,6 +76,6 @@ export const Folder: React.FC<{ name: string }> = ({ name }) => {
           <span> {folderName} </span>
         )}
       </div>
-    </Dropdown>
+    </ContainerDropdown>
   );
 };
