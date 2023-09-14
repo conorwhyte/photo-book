@@ -70,7 +70,7 @@ export const Shell: React.FC<WithAuthenticatorProps> = (props) => {
   }, [name]);
 
   return (
-    <Layout style={{ padding: "0 24px" }}>
+    <Layout style={{ padding: "0 15px" }}>
       <Header style={headerStyle}>
         <Row>
           <Col span={12}>

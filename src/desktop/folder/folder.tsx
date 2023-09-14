@@ -61,7 +61,7 @@ export const Folder: React.FC<{ name: string }> = ({ name }) => {
         onClick={onSelect}
         onBlur={onBlur}
       >
-        <img src={FolderIcon} alt="folder" />
+        <img src={FolderIcon} width={80} height={80} alt="folder" />
         {editMode ? (
           <Input
             value={folderName}
