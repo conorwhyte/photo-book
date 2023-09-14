@@ -15,7 +15,7 @@ export const Desktop = () => {
   const { items, canvas } = useDesktop();
 
   return (
-    <div style={{ height: "100vh" }}>
+    <div style={{ height: "1000px" }}>
       <DndProvider backend={HTML5Backend}>
         <div id="canvas" ref={canvas} className={styles.desktop}>
           {Object.keys(items).map((name) => (
