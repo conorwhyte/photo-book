@@ -1,5 +1,5 @@
 /* eslint-disable no-useless-escape */
-export function mobileCheck() {
+export function isMobile() {
   const { userAgent } = navigator;
 
   let check = false;
